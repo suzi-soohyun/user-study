@@ -6,6 +6,7 @@ create table results (
   trial text,
   "left" text,
   "right" text,
+  choice text,
   chosen text,
   other text,
   time_ms int

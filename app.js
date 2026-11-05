@@ -23,7 +23,7 @@ function show() {
 function pick(side) {
   const t = trials[idx];
   const [win, lose] = side === "left" ? [t.l, t.r] : [t.r, t.l];
-  results.push({ trial: t.id, left: t.l.method, right: t.r.method, chosen: win.method, other: lose.method, time_ms: Math.round(performance.now() - t0) });
+  results.push({ trial: t.id, left: t.l.method, right: t.r.method, choice: side === "left" ? "A" : "B", chosen: win.method, other: lose.method, time_ms: Math.round(performance.now() - t0) });
   idx++;
   if (idx < trials.length) return show();
   $("study").classList.add("hidden");

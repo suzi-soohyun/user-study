@@ -97,9 +97,5 @@ document.querySelectorAll(".option").forEach((b) => (b.onclick = () => select(b.
 $("next").onclick = next;
 $("back").onclick = back;
 document.addEventListener("keydown", (e) => {
-  if ($("study").classList.contains("hidden")) return;
-  if (["a", "A", "ArrowLeft"].includes(e.key)) select("left");
-  if (["b", "B", "ArrowRight"].includes(e.key)) select("right");
-  if (e.key === "Backspace") back();
-  if (e.key === "Enter") { e.preventDefault(); next(); }
+  if (["Enter", " "].includes(e.key)) e.preventDefault();
 });

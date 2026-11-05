@@ -3,6 +3,7 @@ const shuffle = (xs) => xs.map((x) => [Math.random(), x]).sort((p, q) => p[0] - 
 
 const trials = shuffle(TRIALS).map((t) => (Math.random() < 0.5 ? { id: t.id, l: t.a, r: t.b } : { id: t.id, l: t.b, r: t.a }));
 const results = [];
+const pid = crypto.randomUUID().slice(0, 8);
 let idx = 0, t0 = 0;
 
 function media(el, m) {
@@ -32,7 +33,6 @@ function pick(side) {
 }
 
 async function submit() {
-  const pid = $("pid").value || "anon";
   const rows = results.map((r) => ({ participant: pid, ...r }));
   try {
     const res = await fetch(`${DB_URL}/rest/v1/results`, {

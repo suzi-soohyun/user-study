@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motion Realism Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section id="intro" class="card narrow">
+      <h1>Motion Realism Study</h1>
+      <p class="lead">You will see pairs of human motions.<br>Pick the one that looks <b>more realistic</b>.</p>
+      <ul class="tips">
+        <li>Natural movement</li>
+        <li>No foot sliding or floating</li>
+        <li>Smooth, no jitter</li>
+      </ul>
+      <input id="pid" type="text" placeholder="Participant ID (optional)">
+      <button id="start">Start</button>
+    </section>
+
+    <section id="study" class="hidden">
+      <header class="top">
+        <h2>Which motion looks more realistic?</h2>
+        <span id="counter" class="muted"></span>
+      </header>
+      <div class="progress"><div id="bar"></div></div>
+      <div class="pair">
+        <button class="option" data-side="left">
+          <span class="badge">A</span>
+          <div class="media" id="left"></div>
+        </button>
+        <button class="option" data-side="right">
+          <span class="badge">B</span>
+          <div class="media" id="right"></div>
+        </button>
+      </div>
+      <p class="muted center">Click a motion, or press <kbd>A</kbd> / <kbd>B</kbd></p>
+    </section>
+
+    <section id="done" class="card narrow hidden">
+      <div class="check">✓</div>
+      <h1>Thank you!</h1>
+      <p id="status" class="muted">Submitting your answers…</p>
+    </section>
+  </main>
+  <script src="trials.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

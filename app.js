@@ -47,7 +47,7 @@ function finish() {
 }
 
 async function submit() {
-  const rows = results.map((r) => ({ participant: pid, ...r }));
+  const rows = results.map((r) => ({ username: pid, ...r }));
   try {
     const res = await fetch(`${DB_URL}/rest/v1/results`, {
       method: "POST",
@@ -63,7 +63,6 @@ async function submit() {
   }
 }
 
-$("name").textContent = pid;
 if (idx > 0) $("start").textContent = "Continue";
 $("start").onclick = () => {
   $("intro").classList.add("hidden");

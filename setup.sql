@@ -2,7 +2,7 @@
 create table results (
   id bigint generated always as identity primary key,
   created_at timestamptz default now(),
-  participant text,
+  username text,
   trial text,
   choice text,
   time_ms int

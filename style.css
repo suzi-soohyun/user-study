@@ -16,8 +16,6 @@ h2 { margin: 0; font-size: 1.25rem; font-weight: 600; }
 
 input { width: 100%; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 10px; font: inherit; margin-bottom: 1rem; outline: none; }
 input:focus { border-color: var(--accent); }
-.name { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1.25rem; padding: 1rem; border-radius: 12px; background: #f9fafb; border: 1px dashed var(--line); color: var(--muted); font-size: .85rem; }
-.name b { color: var(--text); font-size: 1.3rem; font-weight: 600; }
 #start { width: 100%; padding: .9rem; border: none; border-radius: 10px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer; transition: opacity .15s; }
 #start:hover { opacity: .9; }
 

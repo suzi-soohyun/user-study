@@ -1,6 +1,6 @@
 // Supabase project settings (Project Settings -> API). See setup.sql.
-const DB_URL = "";
-const DB_KEY = "";
+const DB_URL = "https://aqdhhrvitajoroxcmguw.supabase.co";
+const DB_KEY = "sb_publishable_voHeVJ69s6UuwcMXg646ag_GThZ3j5_";
 
 // Each trial compares two motions. Replace `src` with video paths (e.g. "videos/001_ours.mp4").
 // Leave `src` empty to show the "motion" placeholder.

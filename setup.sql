@@ -4,11 +4,7 @@ create table results (
   created_at timestamptz default now(),
   participant text,
   trial text,
-  "left" text,
-  "right" text,
   choice text,
-  chosen text,
-  other text,
   time_ms int
 );
 

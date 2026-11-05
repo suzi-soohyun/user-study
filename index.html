@@ -12,12 +12,12 @@
   <main>
     <section id="intro" class="card narrow">
       <h1>Motion Realism Study</h1>
-      <p class="lead">You will see pairs of human motions.<br>Pick the one that looks <b>more realistic</b>.</p>
-      <ul class="tips">
-        <li>Natural movement</li>
-        <li>No foot sliding or floating</li>
-        <li>Smooth, no jitter</li>
-      </ul>
+      <p class="lead">You will see <b id="n"></b> pairs of human motions.<br>For each pair, choose the one that looks <b>more realistic</b>.</p>
+      <ol class="steps">
+        <li>Watch both motions, A and B</li>
+        <li>Click the more realistic one (you can change it)</li>
+        <li>Press <b>Next</b>, or <b>Back</b> to revisit, then <b>Submit</b> at the end</li>
+      </ol>
       <button id="start">Start</button>
     </section>
 
@@ -37,7 +37,11 @@
           <div class="media" id="right"></div>
         </button>
       </div>
-      <p class="muted center">Click a motion, or press <kbd>A</kbd> / <kbd>B</kbd></p>
+      <p class="muted center">Click a motion (or press <kbd>A</kbd> / <kbd>B</kbd>), then <b>Next</b> (<kbd>Enter</kbd>)</p>
+      <div class="nav">
+        <button id="back">Back</button>
+        <button id="next" disabled>Next</button>
+      </div>
     </section>
 
     <section id="done" class="card narrow hidden">

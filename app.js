@@ -14,7 +14,7 @@ save();
 const trials = st.order.map((id) => TRIALS.find((t) => t.id === id));
 const results = st.results;
 const pid = st.pid;
-let idx = results.length, t0 = 0;
+let idx = results.length, t0 = 0, sel = null;
 
 function media(el, src) {
   el.innerHTML = src
@@ -28,16 +28,39 @@ function show() {
   media($("right"), t.b);
   $("counter").textContent = `${idx + 1} / ${trials.length}`;
   $("bar").style.width = `${(100 * idx) / trials.length}%`;
+  const r = results[idx];
+  select(r ? (r.choice === "A" ? "left" : "right") : null);
+  $("next").textContent = idx === trials.length - 1 ? "Submit" : "Next";
+  const pair = document.querySelector(".pair");
+  pair.classList.remove("fade");
+  void pair.offsetWidth;
+  pair.classList.add("fade");
   t0 = performance.now();
 }
 
-function pick(side) {
-  const t = trials[idx];
-  results.push({ trial: t.id, choice: side === "left" ? "A" : "B", time_ms: Math.round(performance.now() - t0) });
+function select(side) {
+  sel = side;
+  document.querySelectorAll(".option").forEach((b) => b.classList.toggle("selected", b.dataset.side === side));
+  $("next").disabled = !side;
+}
+
+function next() {
+  if (!sel) return;
+  const ms = Math.round(performance.now() - t0) + (results[idx]?.time_ms ?? 0);
+  results[idx] = { trial: trials[idx].id, choice: sel === "left" ? "A" : "B", time_ms: ms };
   save();
   idx++;
   if (idx < trials.length) return show();
   finish();
+}
+
+function back() {
+  if (idx > 0) {
+    idx--;
+    return show();
+  }
+  $("study").classList.add("hidden");
+  $("intro").classList.remove("hidden");
 }
 
 function finish() {
@@ -63,15 +86,20 @@ async function submit() {
   }
 }
 
+$("n").textContent = trials.length;
 if (idx > 0) $("start").textContent = "Continue";
 $("start").onclick = () => {
   $("intro").classList.add("hidden");
   $("study").classList.remove("hidden");
   idx < trials.length ? show() : finish();
 };
-document.querySelectorAll(".option").forEach((b) => (b.onclick = () => pick(b.dataset.side)));
+document.querySelectorAll(".option").forEach((b) => (b.onclick = () => select(b.dataset.side)));
+$("next").onclick = next;
+$("back").onclick = back;
 document.addEventListener("keydown", (e) => {
   if ($("study").classList.contains("hidden")) return;
-  if (["a", "A", "ArrowLeft"].includes(e.key)) pick("left");
-  if (["b", "B", "ArrowRight"].includes(e.key)) pick("right");
+  if (["a", "A", "ArrowLeft"].includes(e.key)) select("left");
+  if (["b", "B", "ArrowRight"].includes(e.key)) select("right");
+  if (e.key === "Backspace") back();
+  if (e.key === "Enter") { e.preventDefault(); next(); }
 });

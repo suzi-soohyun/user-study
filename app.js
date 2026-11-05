@@ -1,8 +1,13 @@
 const $ = (id) => document.getElementById(id);
 const shuffle = (xs) => xs.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((p) => p[1]);
 
+const ADJ = ["brave", "calm", "happy", "swift", "bright", "gentle", "lucky", "quiet", "bold", "clever", "sunny", "witty"];
+const ANIMAL = ["otter", "panda", "fox", "koala", "tiger", "eagle", "dolphin", "rabbit", "owl", "lion", "penguin", "whale"];
+const any = (xs) => xs[Math.floor(Math.random() * xs.length)];
+const randomName = () => `${any(ADJ)}-${any(ANIMAL)}-${Math.floor(Math.random() * 1000)}`;
+
 const KEY = "motion_study";
-const st = JSON.parse(localStorage.getItem(KEY)) ?? { pid: crypto.randomUUID().slice(0, 8), order: shuffle(TRIALS.map((t) => t.id)), results: [] };
+const st = JSON.parse(localStorage.getItem(KEY)) ?? { pid: randomName(), order: shuffle(TRIALS.map((t) => t.id)), results: [] };
 const save = () => localStorage.setItem(KEY, JSON.stringify(st));
 save();
 
@@ -58,6 +63,7 @@ async function submit() {
   }
 }
 
+$("name").textContent = pid;
 if (idx > 0) $("start").textContent = "Continue";
 $("start").onclick = () => {
   $("intro").classList.add("hidden");

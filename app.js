@@ -37,7 +37,7 @@ function show() {
   $("counter").textContent = `${idx + 1} / ${trials.length}`;
   $("bar").style.width = `${(100 * idx) / trials.length}%`;
   const r = results[idx];
-  select(r ? (r.choice === r.left_label ? "left" : "right") : null);
+  select(r ? (r.choice === r.a_label ? "left" : "right") : null);
   $("next").textContent = idx === trials.length - 1 ? "Submit" : "Next";
   const pair = document.querySelector(".pair");
   pair.classList.remove("fade");
@@ -56,7 +56,7 @@ function next() {
   if (!sel) return;
   const ms = Math.round(performance.now() - t0) + (results[idx]?.time_ms ?? 0);
   const t = trials[idx], c = label(sel);
-  results[idx] = { trial: t.id, choice: c, sample: sample(t[c]), left_label: st.left[idx], time_ms: ms };
+  results[idx] = { trial: t.id, choice: c, sample: sample(t[c]), a_label: label("left"), b_label: label("right"), time_ms: ms };
   save();
   idx++;
   if (idx < trials.length) return show();

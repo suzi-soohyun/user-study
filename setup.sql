@@ -4,7 +4,9 @@ create table results (
   created_at timestamptz default now(),
   username text,
   trial text,
-  choice text,
+  choice text,   -- disc_low or disc_high
+  sample text,   -- id of the chosen motion, e.g. 5261_23
+  left_label text, -- label shown on the left
   time_ms int
 );
 
@@ -12,3 +14,6 @@ create table results (
 alter table results enable row level security;
 create policy "insert only" on results for insert to anon with check (true);
 grant insert on results to anon;
+
+-- If the table already exists, run this instead of create table:
+-- alter table results add column sample text, add column left_label text;
